@@ -27,3 +27,7 @@ Thumbs.db
 *_old.py
 *.log
 !sample_logs/*.log
+
+# 内部文档（不上传）
+OPTIMIZATION.md
+SME_UPGRADE_PLAN.md
