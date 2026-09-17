@@ -1,0 +1,45 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+dist
+build
+.venv
+venv
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# 测试
+tests
+*_test.py
+test_*.py
+run_tests.py
+
+# 文档
+*.md
+!README.md
+LICENSE
+
+# 旧文件
+*_backup.py
+*_old.py
+
+# 报告（运行时生成）
+reports/*.html
+
+# 历史记录
+history.json
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore

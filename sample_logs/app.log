@@ -1,0 +1,49 @@
+[2024-01-15 10:23:45] [INFO] [application] Ӧ������ɹ������ڳ�ʼ������
+[2024-01-15 10:23:46] [INFO] [database] ���ݿ����ӳ��Ѵ�������������� 20
+[2024-01-15 10:23:47] [INFO] [cache] Redis ������������ӣ��ڵ� 127.0.0.1:6379
+[2024-01-15 10:23:48] [INFO] [auth] JWT ��֤ģ���ʼ�����
+[2024-01-15 10:24:00] [INFO] [scheduler] ��ʱ����������������ע������: cleanup, backup, report
+[2024-01-15 10:25:12] [INFO] [api] API ��������˿� 8080���ȴ�����
+[2024-01-15 10:30:00] [INFO] [scheduler] ��ʱ���� cleanup ִ����ϣ���ʱ 2.3s
+[2024-01-15 10:35:22] [WARNING] [database] ���ӳ�ʹ���ʴﵽ 75%����ǰ��Ծ���� 15/20
+[2024-01-15 10:36:01] [INFO] [api] �յ� GET /api/users ������Դ IP 192.168.1.100
+[2024-01-15 10:36:02] [INFO] [api] GET /api/users ��Ӧ 200����ʱ 45ms
+[2024-01-15 10:37:18] [INFO] [api] �յ� POST /api/orders ������Դ IP 192.168.1.105
+[2024-01-15 10:37:19] [INFO] [api] POST /api/orders ��Ӧ 201����ʱ 120ms
+[2024-01-15 10:40:00] [ERROR] [database] ���ӳ�ʱ: �޷����ӵ����ݿ� 10.0.0.50:5432�������� 3 ��
+[2024-01-15 10:40:01] [ERROR] [database] ���ݿ������쳣��������: ECONNREFUSED
+[2024-01-15 10:40:05] [INFO] [database] ���ݿ��Զ������ɹ�
+[2024-01-15 10:42:30] [INFO] [cache] ����������: 89.5%����ֵ����: 12045
+[2024-01-15 10:45:00] [INFO] [scheduler] ��ʱ���� backup ִ����ϣ���ʱ 15.7s
+[2024-01-15 10:50:12] [INFO] [api] �յ� GET /api/products?page=1 ����
+[2024-01-15 10:50:13] [INFO] [api] GET /api/products ��Ӧ 200����ʱ 82ms
+[2024-01-15 10:55:00] [INFO] [monitoring] ϵͳ���: CPU 23%, �ڴ� 61%, ���� 45%
+[2024-01-15 11:00:00] [INFO] [scheduler] ��ʱ���� report ִ����ϣ���ʱ 8.2s
+[2024-01-15 11:05:33] [WARNING] [cache] Redis ��Ӧ�ӳ�����: ƽ�� 45ms (��ֵ 30ms)
+[2024-01-15 11:10:00] [INFO] [api] �յ� PUT /api/users/42 ����
+[2024-01-15 11:10:01] [INFO] [api] PUT /api/users/42 ��Ӧ 200����ʱ 67ms
+[2024-01-15 11:15:44] [ERROR] [auth] �û���¼ʧ��: �û��� admin ������֤��ͨ������Դ IP 203.0.113.5
+[2024-01-15 11:20:00] [INFO] [monitoring] ϵͳ���: CPU 28%, �ڴ� 63%, ���� 45%
+[2024-01-15 11:25:10] [INFO] [api] �յ� DELETE /api/sessions/expired ����
+[2024-01-15 11:25:11] [INFO] [api] DELETE /api/sessions ��Ӧ 200������ 127 �����ڻỰ
+[2024-01-15 11:30:00] [INFO] [scheduler] ��ʱ���� cleanup ִ����ϣ���ʱ 1.8s
+[2024-01-15 11:35:22] [ERROR] [payment] ֧�����ص���ʧ��: ���� PAY-20240115-001 ֧����ʱ
+Traceback (most recent call last):
+  File "/app/services/payment_service.py", line 87, in process_payment
+    response = gateway.charge(amount=order.amount, currency=order.currency)
+  File "/app/gateways/stripe.py", line 45, in charge
+    raise TimeoutError("Gateway response timeout after 30s")
+TimeoutError: Gateway response timeout after 30s
+[2024-01-15 11:35:25] [INFO] [payment] ���� PAY-20240115-001 �ѱ��Ϊ������
+[2024-01-15 11:40:00] [INFO] [monitoring] ϵͳ���: CPU 31%, �ڴ� 65%, ���� 46%
+[2024-01-15 11:45:00] [INFO] [api] �յ� GET /api/health �����������
+[2024-01-15 11:45:00] [INFO] [api] GET /api/health ��Ӧ 200: status=healthy
+[2024-01-15 11:50:30] [WARNING] [monitoring] ���� I/O ʹ���ʳ��� 80%��д���ӳ�����
+[2024-01-15 11:55:00] [INFO] [scheduler] ��ʱ���� cleanup ִ����ϣ���ʱ 2.1s
+[2024-01-15 12:00:00] [INFO] [api] �յ� GET /api/stats/dashboard ����
+[2024-01-15 12:00:01] [INFO] [api] GET /api/stats/dashboard ��Ӧ 200����ʱ 230ms
+[2024-01-15 12:05:12] [ERROR] [email] �ʼ�����ʧ��: SMTP ������ mail.example.com ���ӱ��ܾ�
+[2024-01-15 12:10:00] [INFO] [monitoring] ϵͳ���: CPU 19%, �ڴ� 58%, ���� 46%
+[2024-01-15 12:15:00] [INFO] [scheduler] ��ʱ���� backup ִ����ϣ���ʱ 14.3s
+[2024-01-15 12:20:33] [INFO] [api] �յ� POST /api/notifications ������������
+[2024-01-15 12:20:34] [INFO] [api] POST /api/notifications ��Ӧ 200������ 45 ��֪ͨ

@@ -1,0 +1,56 @@
+# 日志分析工具配置文件
+# 用法: python analyzer.py --config config.yaml
+
+# 扫描配置
+scan:
+  log_dir: ./logs
+  pattern: "*.log"
+  exclude:
+    - "*.tmp"
+    - "archive/"
+  max_file_size_mb: 100
+  encoding: utf-8
+
+# 分析配置
+analysis:
+  levels:
+    - ERROR
+    - WARN
+    - WARNING
+    - FATAL
+    - CRITICAL
+    - Exception
+    - Traceback
+  dedup: true
+  context_lines: 3
+
+# 输出配置
+output:
+  format: html
+  dir: reports
+  auto_open: true
+  filename_template: "report_{date}_{time}"
+
+# 告警配置（需配合 watch 模式使用）
+alert:
+  enabled: false
+  levels:
+    - FATAL
+    - CRITICAL
+  channels: []
+  # - type: webhook
+  #   url: https://oapi.dingtalk.com/robot/send?access_token=xxx
+  # - type: email
+  #   smtp_host: smtp.example.com
+  #   smtp_port: 465
+  #   use_ssl: true
+  #   username: ""
+  #   password: ""
+  #   from_addr: "alert@example.com"
+  #   to_addrs:
+  #     - "admin@example.com"
+
+# 监控配置
+watch:
+  enabled: false
+  interval_seconds: 30

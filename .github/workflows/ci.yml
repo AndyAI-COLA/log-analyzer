@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Run tests
+        run: python tests/run_tests.py
+
+      - name: Run analyzer
+        run: python analyzer.py sample_logs --no-open
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t log-analyzer:test .
+
+      - name: Test Docker image
+        run: docker run --rm -v C:\kelecoding\log-analyzer/sample_logs:/logs:ro log-analyzer:test /logs

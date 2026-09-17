@@ -1,0 +1,34 @@
+# ============================================================
+# Log Error Analyzer - Docker Compose
+# ============================================================
+# 用法:
+#   docker-compose up                    # 运行一次
+#   docker-compose up -d monitor         # 后台监控模式
+#   docker-compose down                  # 停止
+# ============================================================
+
+services:
+  # 单次分析服务
+  analyze:
+    build: .
+    container_name: log-analyzer
+    volumes:
+      - ./logs:/logs:ro          # 日志目录（只读）
+      - ./reports:/reports       # 报告输出目录
+      - ./config.yaml:/app/config.yaml:ro  # 配置文件
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # 持续监控服务
+  monitor:
+    build: .
+    container_name: log-monitor
+    restart: unless-stopped
+    volumes:
+      - ./logs:/logs:ro
+      - ./reports:/reports
+      - ./config.yaml:/app/config.yaml:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    entrypoint: ["python", "analyzer.py", "--no-open", "--watch", "60"]
+    command: ["/logs"]
