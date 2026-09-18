@@ -41,5 +41,8 @@ jobs:
       - name: Build Docker image
         run: docker build -t log-analyzer:test .
 
+      - name: check workspace files
+      run: ls-la ${{github.workspace}}
+   
       - name: Test Docker image
-        run: docker run --rm -v ./sample_logs:/logs:ro log-analyzer:test /logs
+      run: "docker run --rm -v ${{github.workspace}}/sample_logs:/logs:ro log-analyzer:test /logs"
